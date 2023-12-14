@@ -597,7 +597,9 @@ namespace Clipper2Lib
       return (Math.Abs(value) <= floatingPointTolerance);
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     internal static double CrossProduct(Point64 pt1, Point64 pt2, Point64 pt3)
     {
       // typecast to double to avoid potential int overflow
@@ -605,7 +607,9 @@ namespace Clipper2Lib
               (double) (pt2.Y - pt1.Y) * (pt3.X - pt2.X));
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     internal static double DotProduct(Point64 pt1, Point64 pt2, Point64 pt3)
     {
       // typecast to double to avoid potential int overflow
@@ -613,19 +617,25 @@ namespace Clipper2Lib
               (double) (pt2.Y - pt1.Y) * (pt3.Y - pt2.Y));
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     internal static double CrossProduct(PointD vec1, PointD vec2)
     {
       return (vec1.y * vec2.x - vec2.y * vec1.x);
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     internal static double DotProduct(PointD vec1, PointD vec2)
     {
       return (vec1.x * vec2.x + vec1.y * vec2.y);
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     internal static long CheckCastInt64(double val)
     {
       if ((val >= max_coord) || (val <= min_coord)) return Invalid64;
@@ -633,7 +643,9 @@ namespace Clipper2Lib
     }
 
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static bool GetIntersectPoint(Point64 ln1a,
       Point64 ln1b, Point64 ln2a, Point64 ln2b, out Point64 ip)
     {

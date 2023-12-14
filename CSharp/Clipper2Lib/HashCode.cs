@@ -79,7 +79,9 @@ namespace Clipper2Lib
       return (int) hash;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private static uint QueueRound(uint hash, uint queuedValue)
     {
       return RotateLeft(hash + (queuedValue * Prime3), 17) * Prime4;
@@ -90,7 +92,9 @@ namespace Clipper2Lib
       return s_seed + Prime5;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private static uint MixFinal(uint hash)
     {
       hash ^= hash >> 15;
@@ -101,7 +105,9 @@ namespace Clipper2Lib
       return hash;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static uint RotateLeft(uint value, int offset)
     {
       return (value << offset) | (value >> (32 - offset));

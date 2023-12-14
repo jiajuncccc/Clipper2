@@ -288,13 +288,17 @@ namespace Clipper2Lib
       return a;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static bool IsPositive(Path64 poly)
     {
       return Area(poly) >= 0;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static bool IsPositive(PathD poly)
     {
       return Area(poly) >= 0;
@@ -336,7 +340,9 @@ namespace Clipper2Lib
       return result;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static Point64 ScalePoint64(Point64 pt, double scale)
     {
       Point64 result = new Point64()
@@ -350,7 +356,9 @@ namespace Clipper2Lib
       return result;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static PointD ScalePointD(Point64 pt, double scale)
     {
       PointD result = new PointD()
@@ -365,7 +373,9 @@ namespace Clipper2Lib
     }
 
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static Rect64 ScaleRect(RectD rec, double scale)
     {
       Rect64 result = new Rect64()
@@ -633,13 +643,17 @@ namespace Clipper2Lib
       return p;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static double Sqr(double value)
     {
       return value * value;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static bool PointsNearEqual(PointD pt1, PointD pt2, double distanceSqrd)
     {
       return Sqr(pt1.x - pt2.x) + Sqr(pt1.y - pt2.y) < distanceSqrd;
@@ -686,7 +700,9 @@ namespace Clipper2Lib
       return result;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private static void AddPolyNodeToPaths(PolyPath64 polyPath, Paths64 paths)
     {
       if (polyPath.Polygon!.Count > 0)
@@ -695,7 +711,9 @@ namespace Clipper2Lib
         AddPolyNodeToPaths((PolyPath64) polyPath._childs[i], paths);
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static Paths64 PolyTreeToPaths64(PolyTree64 polyTree)
     {
       Paths64 result = new Paths64();
@@ -704,7 +722,9 @@ namespace Clipper2Lib
       return result;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static void AddPolyNodeToPathsD(PolyPathD polyPath, PathsD paths)
     {
       if (polyPath.Polygon!.Count > 0)
@@ -713,7 +733,9 @@ namespace Clipper2Lib
         AddPolyNodeToPathsD((PolyPathD) polyPath._childs[i], paths);
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static PathsD PolyTreeToPathsD(PolyTreeD polyTree)
     {
       PathsD result = new PathsD();
@@ -727,7 +749,9 @@ namespace Clipper2Lib
     }
 
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static double PerpendicDistFromLineSqrd(PointD pt, PointD line1, PointD line2)
     {
       double a = pt.x - line1.x;
@@ -738,7 +762,9 @@ namespace Clipper2Lib
       return Sqr(a * d - c * b) / (c * c + d * d);
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     public static double PerpendicDistFromLineSqrd(Point64 pt, Point64 line1, Point64 line2)
     {
       double a = (double) pt.X - line1.X;
@@ -828,7 +854,9 @@ namespace Clipper2Lib
     }
 
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private static int GetNext(int current, int high, ref bool[] flags)
     {
       ++current;

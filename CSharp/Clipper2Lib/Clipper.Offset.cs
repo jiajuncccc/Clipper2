@@ -235,7 +235,9 @@ namespace Clipper2Lib
     }
 
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     internal static PointD GetUnitNormal(Point64 pt1, Point64 pt2)
     {
       double dx = (pt2.X - pt1.X);
@@ -312,7 +314,9 @@ namespace Clipper2Lib
       return result;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private static PointD TranslatePoint(PointD pt, double dx, double dy)
     {
 #if USINGZ
@@ -322,7 +326,9 @@ namespace Clipper2Lib
 #endif
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private static PointD ReflectPoint(PointD pt, PointD pivot)
     {
 #if USINGZ
@@ -332,19 +338,25 @@ namespace Clipper2Lib
 #endif
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private static bool AlmostZero(double value, double epsilon = 0.001)
     {
       return Math.Abs(value) < epsilon;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private static double Hypotenuse(double x, double y)
     {
       return Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private static PointD NormalizeVector(PointD vec)
     {
 	    double h = Hypotenuse(vec.x, vec.y);
@@ -354,13 +366,17 @@ namespace Clipper2Lib
     }
 
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private static PointD GetAvgUnitVector(PointD vec1, PointD vec2)
     {
 	    return NormalizeVector(new PointD(vec1.x + vec2.x, vec1.y + vec2.y));
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private static PointD IntersectPoint(PointD pt1a, PointD pt1b, PointD pt2a, PointD pt2b)
     {
       if (InternalClipper.IsAlmostZero(pt1a.x - pt1b.x)) //vertical
@@ -389,7 +405,9 @@ namespace Clipper2Lib
       }
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private Point64 GetPerpendic(Point64 pt, PointD norm)
     {
 #if USINGZ
@@ -401,7 +419,9 @@ namespace Clipper2Lib
 #endif
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private PointD GetPerpendicD(Point64 pt, PointD norm)
     {
 #if USINGZ
@@ -413,7 +433,9 @@ namespace Clipper2Lib
 #endif
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private void DoBevel(Path64 path, int j, int k)
     {
       Point64 pt1, pt2;
@@ -432,7 +454,9 @@ namespace Clipper2Lib
       pathOut.Add(pt2);
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private void DoSquare(Path64 path, int j, int k)
     {
       PointD vec;
@@ -484,7 +508,9 @@ namespace Clipper2Lib
       }
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private void DoMiter(Group group, Path64 path, int j, int k, double cosA)
     {
       double q = _groupDelta / (cosA + 1);
@@ -500,7 +526,9 @@ namespace Clipper2Lib
 #endif
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private void DoRound(Path64 path, int j, int k, double angle)
     {
       if (DeltaCallback != null)
@@ -540,7 +568,9 @@ namespace Clipper2Lib
       pathOut.Add(GetPerpendic(pt, _normals[j]));
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private void BuildNormals(Path64 path)
     {
       int cnt = path.Count;
@@ -605,7 +635,9 @@ namespace Clipper2Lib
       k = j;
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private void OffsetPolygon(Group group, Path64 path)
     {
       pathOut = new Path64();
@@ -615,7 +647,9 @@ namespace Clipper2Lib
       _solution.Add(pathOut);
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private void OffsetOpenJoined(Group group, Path64 path)
     {
       OffsetPolygon(group, path);
@@ -684,7 +718,9 @@ namespace Clipper2Lib
       _solution.Add(pathOut);
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     private static bool ToggleBoolIf(bool val, bool condition)
     {
       return condition ? !val : val;
