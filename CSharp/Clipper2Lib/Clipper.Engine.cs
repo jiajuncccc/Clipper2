@@ -534,7 +534,9 @@ namespace Clipper2Lib
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private static void SwapActives(ref Active ae1, ref Active ae2)
     {
-      (ae2, ae1) = (ae1, ae2);
+        Active temp = ae1;
+        ae1 = ae2;
+        ae2 = temp;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -2026,8 +2028,9 @@ namespace Clipper2Lib
           int j = i + 1;
           while (!EdgesAdjacentInAEL(_intersectList[j])) j++;
           // swap
-          (_intersectList[j], _intersectList[i]) =
-            (_intersectList[i], _intersectList[j]);
+          IntersectNode temp = _intersectList[j];
+          _intersectList[j] = _intersectList[i];
+          _intersectList[i] = temp;
         }
 
         IntersectNode node = _intersectList[i];
@@ -2735,7 +2738,9 @@ private void DoHorizontal(Active horz)
             if (Path1InsidePath2(or1.pts, or2.pts))
             {
               //swap or1's & or2's pts
-              (or2.pts, or1.pts) = (or1.pts, or2.pts);
+              OutPt temp = or2.pts;
+              or2.pts = or1.pts;
+              or1.pts = temp;
               FixOutRecPts(or1);
               FixOutRecPts(or2);
               //or2 is now inside or1
