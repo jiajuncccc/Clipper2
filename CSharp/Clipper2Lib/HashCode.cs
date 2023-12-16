@@ -58,10 +58,17 @@ namespace Clipper2Lib
 
     private static uint GenerateGlobalSeed()
     {
+#if NET40_OR_GREATER
       using RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
       byte[] data = new byte[sizeof(uint)];
       randomNumberGenerator.GetBytes(data);
       return BitConverter.ToUInt32(data, 0);
+#else
+      RandomNumberGenerator randomNumberGenerator = RandomNumberGenerator.Create();
+      byte[] data = new byte[sizeof(uint)];
+      randomNumberGenerator.GetBytes(data);
+      return BitConverter.ToUInt32(data, 0);
+#endif
     }
 
     public static int Combine<T1, T2>(T1 value1, T2 value2)
