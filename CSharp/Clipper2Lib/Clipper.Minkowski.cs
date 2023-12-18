@@ -10,7 +10,7 @@
 #nullable enable
 using System;
 
-namespace Clipper2Lib
+namespace SjClipperLib
 {
   public class Minkowski
   {

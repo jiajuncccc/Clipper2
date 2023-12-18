@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Reflection.Emit;
 using System.Runtime.CompilerServices;
 
-namespace Clipper2Lib
+namespace SjClipperLib
 {
 
   // Vertex: a pre-clipping data structure. It is used to separate polygons

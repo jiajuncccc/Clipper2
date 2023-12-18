@@ -16,7 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
-namespace Clipper2Lib
+namespace SjClipperLib
 {
 
   // PRE-COMPILER CONDITIONAL ...
