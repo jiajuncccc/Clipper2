@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net20;net40;net45</TargetFrameworks>
+    <TargetFrameworks>net40;net45</TargetFrameworks>
     <Nullable>enable</Nullable>
     <LangVersion>8</LangVersion>
   </PropertyGroup>
