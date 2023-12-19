@@ -158,6 +158,36 @@ namespace SjClipperLib
       co.Execute(delta * scale, tmp); // reuse 'tmp' to receive (scaled) solution
       return ScalePathsD(tmp, 1 / scale);
     }
+    public static PolyTreeD InflatePolyTree(PolyTreeD polyTreeD, double delta, JoinType joinType,
+      EndType endType, double miterLimit = 2.0, int precision = 2)
+    {
+      InternalClipper.CheckPrecision(precision);
+      double scale = Math.Pow(10, precision);
+      PathsD paths = PolyTreeToPathsD(polyTreeD);
+      Paths64 tmp = ScalePaths64(paths, scale);
+      ClipperOffset co = new ClipperOffset(miterLimit);
+      co.AddPaths(tmp, joinType, endType);
+      PolyTree64 polyTree64 = new PolyTree64();
+      co.Execute(delta * scale, polyTree64); // reuse 'tmp' to receive (scaled) solution
+      return ScalePolyTreeD(polyTree64, 1 / scale);
+    }
+
+    public static PolyTreeD ScalePolyTreeD(PolyTree64 polyTree64,double scale)
+    {
+      PolyTreeD polyTreeD = new PolyTreeD();
+      ScalePolyPathD(polyTreeD, polyTree64, scale);
+      return polyTreeD;
+    }
+
+    private static void ScalePolyPathD(PolyPathD parentD, PolyPath64 parent64,double scale)
+    {
+      foreach (var polyPathBase in parent64._childs)
+      {
+        PolyPath64? polyPath64 = (PolyPath64) polyPathBase;
+        PolyPathD? polyPathD = (parentD.AddChild(ScalePathD(polyPath64.Polygon!, scale)) as PolyPathD)!;
+        ScalePolyPathD(polyPathD, polyPath64, scale);
+      }
+    }
 
     public static Paths64 RectClip(Rect64 rect, Paths64 paths)
     {
@@ -1179,6 +1209,8 @@ namespace SjClipperLib
       Console.WriteLine("Polytree Root");
       foreach (PolyPathD child in polytree) { ShowPolyPathStructure(child, 1); }
     }
+
+    
 
   } // Clipper
 } // namespace
