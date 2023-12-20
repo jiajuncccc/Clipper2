@@ -162,7 +162,7 @@ namespace SjClipperLib
     {
       _solution.Clear();
       if (_groupList.Count == 0) return;
-      _solution.Capacity = CalcSolutionCapacity();
+      _solution.EnsureCapacity(CalcSolutionCapacity());
 
       // make sure the offset delta is significant
       if (Math.Abs(delta) < 0.5)
@@ -259,7 +259,7 @@ namespace SjClipperLib
 
     internal static void GetMultiBounds(Paths64 paths, List<Rect64> boundsList)
     {
-      boundsList.Capacity = paths.Count;
+      boundsList.EnsureCapacity(paths.Count);
       foreach (Path64 path in paths)
       {
         if (path.Count < 1)
@@ -575,7 +575,7 @@ namespace SjClipperLib
     {
       int cnt = path.Count;
       _normals.Clear();
-      _normals.Capacity = cnt;
+      _normals.EnsureCapacity(cnt);
 
       for (int i = 0; i < cnt - 1; i++)
         _normals.Add(GetUnitNormal(path[i], path[i + 1]));
