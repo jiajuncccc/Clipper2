@@ -242,7 +242,9 @@ namespace SjClipperLib
       minimaList.Add(lm);
     }
 
+#if NET45_OR_GREATER
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+#endif
     internal static void EnsureCapacity<T>(this List<T> list, int minCapacity)
     {
       if(list.Capacity < minCapacity)
