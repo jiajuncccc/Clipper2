@@ -161,9 +161,13 @@ namespace SjClipperLib
     public static PolyTreeD InflatePolyTree(PolyTreeD polyTreeD, double delta, JoinType joinType,
       EndType endType, double miterLimit = 2.0, int precision = 2)
     {
+      return InflatePolyTree(PolyTreeToPathsD(polyTreeD), delta, joinType, endType, miterLimit, precision);
+    }
+    public static PolyTreeD InflatePolyTree(PathsD paths, double delta, JoinType joinType,
+      EndType endType, double miterLimit = 2.0, int precision = 2)
+    {
       InternalClipper.CheckPrecision(precision);
       double scale = Math.Pow(10, precision);
-      PathsD paths = PolyTreeToPathsD(polyTreeD);
       Paths64 tmp = ScalePaths64(paths, scale);
       ClipperOffset co = new ClipperOffset(miterLimit);
       co.AddPaths(tmp, joinType, endType);
